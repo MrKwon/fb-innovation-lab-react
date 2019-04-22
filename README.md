@@ -21,4 +21,5 @@
  - [웹 지식지도](https://seomal.org/)
 
  # 강의 순서
-  1. JavaScript Object Oriented 개념 설명
+  1. HTML 기본적인 내용 다루기
+  2. JavaScript Object Oriented 개념 설명
