@@ -2,25 +2,82 @@
 <html>
   <head></head>
   <body>
-    <header> <!--Symantic Tag, 의미론적 태그, 기능은 없고 그냥 알려주는 용도의 태그, HTML5-->
-      <h1><a href='./index.html'>WEB</a></h1>
-      World Wide Web !
-    </header>
-    <nav> <!--Symantic Tag, 의미론적 태그, 기능은 없고 그냥 알려주는 용도의 태그, HTML5-->
-      <ol>
-        <li><a href='./1.html'>HTML</a></li>
-        <li><a href='./2.html'>CSS</a></li>
-        <li><a href='./3.html'>JavaScript</a></li>
-      </ol>
-      <ol>
-        <li>create</li>
-        <li>update</li>
-        <li><button type='button'>delete</button></li>
-      </ol>
-    </nav>
-    <article> <!--Symantic Tag, 의미론적 태그, 기능은 없고 그냥 알려주는 용도의 태그, HTML5-->
-      <h2>Welcome</h2>
-      Hello, Web !
-    </article>
+    <!-- 의미론적 태그, 기능은 없고 그냥 알려주는 용도의 태그 Symantic Tags, HTML5 -->
+    <script>
+      function elementType(type, content, onClick) {
+        if (type === 'button') {
+          return `<button type='button' onclick='${onClick}'>${content}</button>`
+        }
+        // return general text
+        return content
+      }
+      function buttonHandler(message) {
+        alert(message)
+      }
+      const headerTag = (props) => {
+        return (
+          `<header>
+            <h1><a href='${props.href}'>${props.title}</a></h1>
+            ${props.content}
+          </header>`
+        );
+      };
+      const navTag = (props) => {
+        let firstList = ''
+        for (let i = 0; i < props.firstData.length; i++) {
+          firstList += `<li><a href=${props.firstData[i].href}>${props.firstData[i].name}</a></li>`
+        }
+
+        let secondList = ''
+        for (let i = 0; i < props.secondData.length; i++) {
+          secondList += `<li>${props.secondData[i].element}</li>`
+        }
+        return ( // 어떻게 리팩토링이 가능할 지 고민해볼 것
+          `<nav>
+            <ol>
+              ${firstList}
+            </ol>
+            <ol>
+              ${secondList}
+            </ol>
+          </nav>`
+        )
+      };
+      const articleTag = (props) => {
+        return (
+          `<article>
+            <h2>${props.title}</h2>
+            ${props.content}
+          </article>`
+        );
+      };
+
+      const HEADER_TITLE = 'Web V'
+      const HEADER_CONTENT = 'World Wide Web !'
+      
+      const ARTICLE_TITLE = 'Welcome'
+      const ARTICLE_CONTENT = 'Hello, Web'
+
+      const CREATE_TITLE = 'Create'
+      const UPDATE_TITLE = 'Update'
+      const DELETE_TITLE = 'Delete'
+      
+      document.write(
+        headerTag({ title: HEADER_TITLE, content: HEADER_CONTENT, href: './index.html' }),
+        navTag({
+          firstData: [
+            { name: 'HTML',       href: './1.html' },
+            { name: 'CSS',        href: './2.html' },
+            { name: 'JavaScript', href: './3.html' },
+          ],
+          secondData: [
+            { element: elementType(type='text',   title= CREATE_TITLE) },
+            { element: elementType(type='text',   title= UPDATE_TITLE) },
+            { element: elementType(type='button', title= DELETE_TITLE) },
+          ]
+        }),
+        articleTag({ title: ARTICLE_TITLE, content: ARTICLE_CONTENT })
+      );
+    </script>
   </body>
 </html>
