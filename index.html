@@ -24,14 +24,13 @@
       };
       const navTag = (props) => {
         let firstList = ''
-        for (let i = 0; i < props.firstData.length; i++) {
-          firstList += `<li><a href=${props.firstData[i].href}>${props.firstData[i].name}</a></li>`
-        }
-
+        props.firstData.forEach((element) => {
+          firstList += `<li><a href=${element.href}>${element.name}</a></li>`
+        })
         let secondList = ''
-        for (let i = 0; i < props.secondData.length; i++) {
-          secondList += `<li>${props.secondData[i].element}</li>`
-        }
+        props.secondData.forEach((element) => {
+          secondList += `<li>${element.element}</li>`
+        })
         return ( // 어떻게 리팩토링이 가능할 지 고민해볼 것
           `<nav>
             <ol>
@@ -41,16 +40,23 @@
               ${secondList}
             </ol>
           </nav>`
-        )
+        );
       };
-      const articleTag = (props) => {
+      const articleTag = (props, ...args) => {
+        let argsIter = ''
+        args.forEach((element) => {
+          argsIter += element
+        })
         return (
           `<article>
-            <h2>${props.title}</h2>
+            ${argsIter}
             ${props.content}
           </article>`
         );
       };
+      const h1Tag = (props) => {
+        return (`<h1>${props.content}</h1>`)
+      }
 
       const HEADER_TITLE = 'Web V'
       const HEADER_CONTENT = 'World Wide Web !'
@@ -61,7 +67,7 @@
       const CREATE_TITLE = 'Create'
       const UPDATE_TITLE = 'Update'
       const DELETE_TITLE = 'Delete'
-      
+
       document.write(
         headerTag({ title: HEADER_TITLE, content: HEADER_CONTENT, href: './index.html' }),
         navTag({
@@ -76,7 +82,7 @@
             { element: elementType(type='button', title= DELETE_TITLE) },
           ]
         }),
-        articleTag({ title: ARTICLE_TITLE, content: ARTICLE_CONTENT })
+        articleTag({ content: ARTICLE_CONTENT }, h1Tag({ content: ARTICLE_TITLE }), h1Tag({ content: ARTICLE_TITLE }))
       );
     </script>
   </body>

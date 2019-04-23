@@ -20,10 +20,14 @@
 # 지식지도
  - [웹 지식지도](https://seomal.org/)
 
- # 강의 순서
+# 강의 순서
+## 4월 22일 - HTML, JavaScript 기본
 1. HTML 기본적인 내용 다루기
 2. JavaScript 이용하는 방법
     * 웹 브라우저, 개발자 도구 콘솔창. 브라우저에 내장된 자바스크립트 엔진을 이용하는 방법입니다.
     * Node 이용
     * HTML 파일 ``<script>`` 태그에서 JavaScript Code 이용
   <!-- JavaScript Object Oriented 개념 설명 -->
+
+## 4월 23일 - JavaScript 객체
+1. 
